@@ -1,3 +1,16 @@
-<p>
-  gomoku works!
-</p>
+<div>
+  <div class="head">
+    <div class="player-name" [ngStyle]="{'background-color': player1.color}">{{player1.name}}</div>
+    <div class="count">{{count}}</div>
+    <div class="player-name" [ngStyle]="{'background-color': player2.color}">{{player2.name}}</div>
+  </div>
+  <div class="board">
+    <div class="row" *ngFor="let row of gameService.gameMatrix">
+      <app-cell *ngFor="let cell of row" [cell]="cell" (click)="onCellClick(cell)"></app-cell>
+    </div>
+  </div>
+  <div>
+    <button mat-raised-button color="accent" (click)="onBackClick()">Back</button>
+    <button mat-raised-button color="primary" (click)="onNew()">New</button>
+  </div>
+</div>

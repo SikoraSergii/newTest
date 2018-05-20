@@ -6,6 +6,7 @@ import { MaterialModule } from './shared/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { FirstPageModule } from './first-page/first-page.module';
 import { AppComponent } from './app.component';
+import { Guard } from 'src/app/shared/quard';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,11 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     FirstPageModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    Guard
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
