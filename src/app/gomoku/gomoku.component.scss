@@ -1,17 +1,53 @@
 :host {
+  height:700px;
+  width:100%;
   display: flex;
   flex-direction: column;
+  justify-content:space-between;
+  align-items:center;
+}
+h2 {
+  margin-bottom: 5px;
+  text-align: center;
+}
+.head {
+  height: 100px;
+  display: flex;
+  flex-direction: row
+}
+.count {
+  width:100px;
+}
+.playerName {
+  height: 70px;
+  width: 150px;
 
-  &.head {
-    display: flex;
-    flex-direction: row
+  .underline {
+    height: 4px;
+    border-style: solid;
+    border-width: 2px 0 0 0;
+    border-radius: 5px;
   }
 }
-.board{
-  display:flex;
-  flex-direction:column
+.board {
+  height: 500px;
+  width: 1000px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  .game {
+    display: flex;
+    flex-direction: column;
+  }
 }
 .row{
   display:flex;
-  flex-direction:row
+  flex-direction:row;
+  justify-content:center;
+}
+.buttonContainer {
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }

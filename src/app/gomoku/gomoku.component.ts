@@ -33,10 +33,22 @@ export class GomokuComponent implements OnInit {
     this.playerTurn = 1;
     this.count = 1;
   }
+  /**
+   * Style
+   */
+  getNameStyle(player: number) {
+    if (player === 1) {
+      return this.playerTurn === 1 ? `{background-color: ${this.player1.color}}` : `{ border: 1px solid ${this.player1.color}}`
+    } else {
+      return this.playerTurn === 2 ? `{ border: 1px solid ${this.player2.color}}` : `{background-color: ${this.player2.color}}`
+    }
 
+  }
+
+  /**
+   * Game logic
+   */
   onCellClick(cell: Cell) {
-    console.log(cell)
-    
     const result: handleClickResponse = this.gameService.handleCellClick(cell, this.playerTurn);
     if (result.win) {
       this.openWinDialog();
@@ -54,10 +66,13 @@ export class GomokuComponent implements OnInit {
       this.playerTurn = 2;
     }
   }
-
+  /**
+   * Buttons
+   */
   public onNew() {
     this.playerTurn = 1;
     this.count = 1;
+    this.gameService.setDefault();
     this.gameService.generateMatrix();
   }
 
@@ -67,7 +82,9 @@ export class GomokuComponent implements OnInit {
     this.gameService.setDefault();
     this.router.navigateByUrl('home')
   }
-
+  /**
+   * Dialog
+   */
   openWinDialog() {
     let dialogRef = this.dialog.open(WinModalComponent, {
       height: '350px',

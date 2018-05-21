@@ -1,57 +1,67 @@
 <div class="firstPageContainer">
   <div class="sidepanel">
-    <form [formGroup]="playersForm">
-      <!--Player 1-->
-      <div >
-        <mat-form-field>
-          <input formControlName="firstName" matInput placeholder="Player 1" />
-          <mat-error >
-            This field is required
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-select placeholder="Color" matInput formControlName="firstColor">
-            <mat-option *ngFor="let color of colors" [value]="color.color">
-              {{color.name}}
-              <span class="TODOcolorExample"></span>
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+  </div>
+  <form [formGroup]="playersForm"  class="form">
+    <div class="name">
+      <h1 class="mat-display-1">Gomoku</h1>
+    </div>
+    <!--Player 1-->
+    <div class="player">
+      <mat-form-field>
+        <input formControlName="firstName" matInput placeholder="Player 1" />
+        <mat-error >
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Color" matInput formControlName="firstColor">
+          <mat-option *ngFor="let color of colors" [value]="color.color">
+            {{color.name}}
+            <span class="TODOcolorExample"></span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-      </div>
-      <!--Player 2-->
-      <div>
-        <mat-form-field>
-          <input formControlName="secondName" matInput placeholder="Player 2" />
+    </div>
+    <!--Player 2-->
+    <div class="player">
+      <mat-form-field>
+        <input formControlName="secondName" matInput placeholder="Player 2" />
         <mat-error>
           This field is required
         </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-select placeholder="Color" matInput formControlName="secondColor">
-            <mat-option *ngFor="let color of colors" [value]="color.color">
-              {{color.name}}
-              <span class="TODOcolorExample"></span>
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <!--Size-->
-        <mat-form-field>
-          <mat-select placeholder="Bord size" matInput formControlName="startBordSize">
-            <mat-option *ngFor="let size of startBordSize" [value]="size">
-              {{size}}
-              <span class="TODOcolorExample"></span>
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Color" matInput formControlName="secondColor">
+          <mat-option *ngFor="let color of colors" [value]="color.color">
+            {{color.name}}
+            <span class="TODOcolorExample"></span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+      <!--Size-->
+      <div class="thirdRowContainer">
+      <mat-form-field>
+        <mat-select placeholder="Bord size" matInput formControlName="startBordSize">
+          <mat-option *ngFor="let size of startBordSize" [value]="size">
+            {{size}}
+            <span class="TODOcolorExample"></span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+        <div class="buttonContainer">
+          <button mat-raised-button color="primary" [disabled]="playersForm.invalid" (click)="onStart()">Start</button>
+        </div>
+    </div>
+    <div class="errorConainer">
       <mat-error *ngIf="playersForm.hasError('namesMatch')">
         Names should differ
       </mat-error>
       <mat-error *ngIf="!playersForm.hasError('namesMatch')&&playersForm.hasError('colorsMatch')">
         Colors should differ
       </mat-error>
-      </div>
-        <button mat-raised-button color="primary" [disabled]="playersForm.invalid" (click)="onStart()">Start</button>
-    </form>
-  </div>
+    </div>
+   
+  </form>
 </div>

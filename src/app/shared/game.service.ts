@@ -23,6 +23,7 @@ export class GameService {
   public setDefault() {
     this.boardSize = 10;
     this.firstCellIndex = 1000;
+    this.lastCellIndex = this.firstCellIndex + this.boardSize - 1;
     this.gameMatrix = [];
     this.winRow = 5;
   }
@@ -32,7 +33,6 @@ export class GameService {
     this.player2 = secondPlayer;
     this.boardSize = boardSize;
     this.lastCellIndex = this.firstCellIndex + this.boardSize - 1;
-    console.log(this.player1, this.player2)
   }
 
  

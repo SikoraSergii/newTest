@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\e2e\\src",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\first-page",
+    "\\src\\app\\gomoku",
+    "\\src\\app\\gomoku\\win-modal",
+    "\\src\\app\\shared"
+  ],
+  "SelectedNode": "\\src\\app\\shared\\material.module.ts",
+  "PreviewInSolutionExplorer": false
+}

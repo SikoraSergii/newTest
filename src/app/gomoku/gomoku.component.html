@@ -1,16 +1,28 @@
-<div>
-  <div class="head">
-    <div class="player-name" [ngStyle]="{'background-color': player1.color}">{{player1.name}}</div>
-    <div class="count">{{count}}</div>
-    <div class="player-name" [ngStyle]="{'background-color': player2.color}">{{player2.name}}</div>
+<div class="head">
+  <div class="playerName">
+   <h2 class="mat-h2">{{player1.name}}</h2> 
+  <div class="underline"
+       [style.border-color]="player1.color"
+       [ngStyle]="playerTurn==1?{'background-color':player1.color}:{}"></div>
   </div>
-  <div class="board">
+  <h2 class="count mat-h2">{{count}}</h2>
+  <div class="playerName">
+    <h2 class="mat-h2">{{player2.name}}</h2>
+    <div class="underline"
+         [style.border-color]="player2.color"
+         [ngStyle]="playerTurn==2?{'background-color':player2.color}:{}"></div>
+  </div>
+</div>
+
+<div class="board">
+  <div class="game">
     <div class="row" *ngFor="let row of gameService.gameMatrix">
       <app-cell *ngFor="let cell of row" [cell]="cell" (click)="onCellClick(cell)"></app-cell>
     </div>
   </div>
-  <div>
-    <button mat-raised-button color="accent" (click)="onBackClick()">Back</button>
-    <button mat-raised-button color="primary" (click)="onNew()">New</button>
-  </div>
+</div>
+
+<div class="buttonContainer">
+  <button mat-raised-button color="accent" (click)="onBackClick()">Back</button>
+  <button mat-raised-button color="primary" (click)="onNew()">New</button>
 </div>
