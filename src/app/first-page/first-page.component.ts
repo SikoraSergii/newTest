@@ -25,9 +25,9 @@ export class FirstPageComponent implements OnInit {
   ngOnInit() {
     this.playersForm = new FormGroup({
       firstName: new FormControl('', Validators.required),
-      firstColor: new FormControl('#283593'),
+      firstColor: new FormControl('#00695c'),
       secondName: new FormControl('', Validators.required),
-      secondColor: new FormControl('#00695c'),
+      secondColor: new FormControl('#283593'),
       startBordSize: new FormControl(10)
     }, [DifferentName(), DifferentColor()]);
     this.colors = Colors;

@@ -2,15 +2,17 @@
   <div class="playerName">
    <h2 class="mat-h2">{{player1.name}}</h2> 
   <div class="underline"
-       [style.border-color]="player1.color"
-       [ngStyle]="playerTurn==1?{'background-color':player1.color}:{}"></div>
+       [style.background-color]="player1.color"
+       [style.height.px]="playerTurn==1?4:2">
+  </div>
   </div>
   <h2 class="count mat-h2">{{count}}</h2>
   <div class="playerName">
     <h2 class="mat-h2">{{player2.name}}</h2>
     <div class="underline"
-         [style.border-color]="player2.color"
-         [ngStyle]="playerTurn==2?{'background-color':player2.color}:{}"></div>
+         [style.background-color]="player2.color"
+         [style.height.px]="playerTurn==2?4:2">
+    </div>
   </div>
 </div>
 
