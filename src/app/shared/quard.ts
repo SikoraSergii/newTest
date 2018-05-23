@@ -12,14 +12,18 @@ export class Guard implements CanActivate, CanLoad {
   ) { }
 
   canActivate() {
-    if (this.gameService.checkInfo()) return true
+    if (this.gameService.checkInfo()) {
+      return true;
+    }
     this.router.navigateByUrl('home');
-    return false
+    return false;
   }
 
   canLoad() {
-    if (this.gameService.checkInfo()) return true
+    if (this.gameService.checkInfo()) {
+      return true;
+    }
     this.router.navigateByUrl('home');
-    return false
+    return false;
   }
 }

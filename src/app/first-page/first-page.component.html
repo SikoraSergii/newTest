@@ -16,8 +16,10 @@
       <mat-form-field>
         <mat-select placeholder="Color" matInput formControlName="firstColor">
           <mat-option *ngFor="let color of colors" [value]="color.color">
-            {{color.name}}
-            <span class="TODOcolorExample"></span>
+            <div class="colorContainer">
+              <div class="colorExample" [style.background-color]="color.color"></div>
+              <div class="colorName">{{color.name}}</div>
+            </div>
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -34,8 +36,10 @@
       <mat-form-field>
         <mat-select placeholder="Color" matInput formControlName="secondColor">
           <mat-option *ngFor="let color of colors" [value]="color.color">
-            {{color.name}}
-            <span class="TODOcolorExample"></span>
+              <div class="colorContainer">
+                  <div class="colorExample" [style.background-color]="color.color"></div>
+                  <div class="colorName">{{color.name}}</div>
+                </div>
           </mat-option>
         </mat-select>
       </mat-form-field>

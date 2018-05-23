@@ -29,7 +29,7 @@ h2 {
 }
 .board {
   height: 500px;
-  width: 1000px;
+  width: 1100px;
   display: flex;
   flex-direction: column;
   overflow: auto;
@@ -40,7 +40,7 @@ h2 {
 }
 .row{
   display:flex;
-  flex: 0 1 auto;
+  flex: 0 0 auto;
   flex-direction:row;
   justify-content:center;
 }
@@ -49,4 +49,7 @@ h2 {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+.mat-dialog-container{
+  padding: 0px;
 }

@@ -17,6 +17,6 @@ export class WinModalComponent implements OnInit {
     this.finalDialogRef.updatePosition({ top: '150px' });
   }
   onClose(newGame: boolean) {
-    this.finalDialogRef.close(newGame)
+    this.finalDialogRef.close(newGame);
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Player } from 'src/app/shared/player-model';
 import { Cell } from 'src/app/shared/cell-model';
-import { handleClickResponse } from 'src/app/shared/handle-click-response-model';
+import { HandleClickResponse } from 'src/app/shared/handle-click-response-model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +14,14 @@ export class GameService {
   firstCellIndex: number;
   lastCellIndex: number;
   boardSize: number;
-  winRow: number
+  winRow: number;
 
   constructor() {
     this.setDefault();
   }
 
   public setDefault() {
-    this.boardSize = 10;
+    this.boardSize = this.boardSize || 10;
     this.firstCellIndex = 1000;
     this.lastCellIndex = this.firstCellIndex + this.boardSize - 1;
     this.gameMatrix = [];
@@ -35,17 +35,16 @@ export class GameService {
     this.lastCellIndex = this.firstCellIndex + this.boardSize - 1;
   }
 
- 
   // for guard
   public checkInfo() {
-    return !!this.player1 && this.player2
+    return !!this.player1 && this.player2;
   }
 
   private generateRow(y: number) {
     const row = [];
     for (let x = this.firstCellIndex; x <= this.lastCellIndex; x++) {
       row.push(new Cell(x, y));
-    };
+    }
     return row;
   }
 
@@ -53,16 +52,16 @@ export class GameService {
     this.gameMatrix = [];
     for (let y = this.firstCellIndex; y <= this.lastCellIndex; y++) {
       this.gameMatrix.push(this.generateRow(y));
-    };
+    }
   }
   /*
   * Handle click
  */
-  public handleCellClick(cell: Cell, player: number): handleClickResponse {
+  public handleCellClick(cell: Cell, player: number): HandleClickResponse {
     const yIndex = this.gameMatrix.findIndex(row => row[0].y === cell.y);
     const xIndex = this.gameMatrix[0].findIndex(column => column.x === cell.x);
     if (this.gameMatrix[yIndex][xIndex].clickedBy) {
-      return new handleClickResponse(false, false); // was clicked before
+      return new HandleClickResponse(false, false); // was clicked before
     }
     this.gameMatrix[yIndex][xIndex].clickedBy = player;
     const isItWin = this.checkWin(xIndex, yIndex, player);
@@ -74,11 +73,11 @@ export class GameService {
         this.addBottomAndRight();
       }
     }
-    return new handleClickResponse(true, isItWin)
+    return new HandleClickResponse(true, isItWin);
   }
 
   // Check the win
-  private checkWin(x: number, y:number, player: number) {
+  private checkWin(x: number, y: number, player: number) {
     const checkArray = this.generateCheckArray(x, y);
     const result = this.check(checkArray, player);
     return result;
@@ -94,21 +93,25 @@ export class GameService {
       result[3].push({ x: x + i, y: y + i }); // Second diagonal
     }
     return result;
-  };
+  }
 
   private check(checkArray: any[][], player: number) {
     let isItWin = false;
     for (let i = 0; i <= 3; i++) {
       const clickedInRow = checkArray[i].reduce((prev, curr) => {
-        if (prev == 5) return prev;
-        if (!this.gameMatrix[curr.y] || !this.gameMatrix[curr.y][curr.x]) return 0;
-        return this.gameMatrix[curr.y][curr.x].clickedBy == player ? ++prev : 0;
+        if (prev === 5) {
+          return prev;
+        }
+        if (!this.gameMatrix[curr.y] || !this.gameMatrix[curr.y][curr.x]) {
+          return 0;
+        }
+        return this.gameMatrix[curr.y][curr.x].clickedBy === player ? ++prev : 0;
       }, 0);
-      if (clickedInRow == 5) {
+      if (clickedInRow === 5) {
         isItWin = true;
         break;
       }
-    };
+    }
     return isItWin;
   }
 
@@ -117,26 +120,26 @@ export class GameService {
  */
   addTopAndLeft() {
     if (!this.firstCellIndex) {
-      return
+      return;
     }
     const row = this.generateRow(this.firstCellIndex - 1);
     this.gameMatrix.unshift(row);
     --this.firstCellIndex;
-    let currentIndex = this.firstCellIndex
-    this.gameMatrix.forEach(row => {
-      row.unshift(new Cell(this.firstCellIndex, currentIndex));
+    let currentIndex = this.firstCellIndex;
+    this.gameMatrix.forEach(eachRow => {
+      eachRow.unshift(new Cell(this.firstCellIndex, currentIndex));
       currentIndex++;
-    })
+    });
   }
   addBottomAndRight() {
     const row = this.generateRow(this.lastCellIndex + 1);
     this.gameMatrix.push(row);
     ++this.lastCellIndex;
-    let currentIndex = this.firstCellIndex
-    this.gameMatrix.forEach(row => {
-      row.push(new Cell(this.lastCellIndex, currentIndex));
+    let currentIndex = this.firstCellIndex;
+    this.gameMatrix.forEach(eachRow => {
+      eachRow.push(new Cell(this.lastCellIndex, currentIndex));
       currentIndex++;
-    })
+    });
   }
 }
 

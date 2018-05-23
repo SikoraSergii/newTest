@@ -18,7 +18,6 @@ const routes: Routes = [
     canLoad: [Guard],
     canActivate: [Guard]
   }
- 
 ];
 
 @NgModule({

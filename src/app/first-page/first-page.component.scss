@@ -43,6 +43,23 @@ h1 {
   flex-direction: row;
   justify-content: space-around;
 }
+.colorContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.colorExample{
+  display: flex;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  border: 1px solid ligtgrey;
+}
+.colorName{
+  margin-left: 15px;
+  display: flex;
+}
 .thirdRowContainer {
   height: 50px;
   display: flex;

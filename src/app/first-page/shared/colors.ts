@@ -5,4 +5,4 @@ export const Colors = [
   { name: 'Teal', color: '#00695c'},
   { name: 'Amber', color: '#c56000'},
   { name: 'Brown', color: '#260e04'},
-]
+];

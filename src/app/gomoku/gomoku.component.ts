@@ -4,14 +4,23 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { GameService } from 'src/app/shared/game.service';
 import { Cell } from 'src/app/shared/cell-model';
-import { handleClickResponse } from 'src/app/shared/handle-click-response-model';
+import { HandleClickResponse } from 'src/app/shared/handle-click-response-model';
 import { Router } from '@angular/router';
 import { WinModalComponent } from 'src/app/gomoku/win-modal/win-modal.component';
+import {animate, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-gomoku',
   templateUrl: './gomoku.component.html',
-  styleUrls: ['gomoku.component.scss']
+  styleUrls: ['gomoku.component.scss'],
+  animations: [
+    trigger('addCell', [
+      transition(':enter', [
+        style({ opacity: '0', background: '#3949ab' }),
+        animate('.4s ease-out', style({ opacity: '1', background: 'transparent' })),
+      ]),
+    ]),
+  ]
 })
 export class GomokuComponent implements OnInit {
   player1: any;
@@ -23,7 +32,7 @@ export class GomokuComponent implements OnInit {
   constructor(
     private gameService: GameService,
     private dialog: MatDialog,
-    private router: Router 
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -34,22 +43,10 @@ export class GomokuComponent implements OnInit {
     this.count = 1;
   }
   /**
-   * Style
-   */
-  getNameStyle(player: number) {
-    if (player === 1) {
-      return this.playerTurn === 1 ? `{background-color: ${this.player1.color}}` : `{ border: 1px solid ${this.player1.color}}`
-    } else {
-      return this.playerTurn === 2 ? `{ border: 1px solid ${this.player2.color}}` : `{background-color: ${this.player2.color}}`
-    }
-
-  }
-
-  /**
    * Game logic
    */
   onCellClick(cell: Cell) {
-    const result: handleClickResponse = this.gameService.handleCellClick(cell, this.playerTurn);
+    const result: HandleClickResponse = this.gameService.handleCellClick(cell, this.playerTurn);
     if (result.win) {
       this.openWinDialog();
 
@@ -80,13 +77,13 @@ export class GomokuComponent implements OnInit {
     this.playerTurn = 1;
     this.count = 1;
     this.gameService.setDefault();
-    this.router.navigateByUrl('home')
+    this.router.navigateByUrl('home');
   }
   /**
    * Dialog
    */
   openWinDialog() {
-    let dialogRef = this.dialog.open(WinModalComponent, {
+    const dialogRef = this.dialog.open(WinModalComponent, {
       height: '350px',
       width: '450px',
       data: {
@@ -100,7 +97,7 @@ export class GomokuComponent implements OnInit {
       } else {
         this.onBackClick();
       }
-    })
+    });
   }
 
 

@@ -1,4 +1,4 @@
-import { ValidatorFn, AbstractControl } from "@angular/forms";
+import { ValidatorFn, AbstractControl } from '@angular/forms';
 
 
 export function DifferentColor(): ValidatorFn {
@@ -6,9 +6,9 @@ export function DifferentColor(): ValidatorFn {
     const firstColor = control.value.firstColor;
     const secondColor = control.value.secondColor;
     if (firstColor && secondColor && firstColor === secondColor ) {
-      return { 'colorsMatch': true }
+      return { 'colorsMatch': true };
     } else {
-      return null
+      return null;
     }
-  }
+  };
 }
